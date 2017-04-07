@@ -1,0 +1,11 @@
+{
+	"node":{
+		"title":"PrintVariable",
+		"class":"com.activiti.plugin.component.PrintVariable",
+        "description": "An automatic task with service logic",
+        "view": "activity/servicetask.svg",
+        "icon": "activity/list/type.service.png",
+        "extensionId":"Component_PrintVariable"
+	},
+	"params":[]
+}
