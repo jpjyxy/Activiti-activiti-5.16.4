@@ -10243,6 +10243,7 @@ ORYX.Core.AbstractShape = ORYX.Core.UIObject.extend(
 	toString: function() { return "ORYX.Core.AbstractShape " + this.id },
     
     /**
+     * 拼接保存JSON字符串
      * Converts the shape to a JSON representation.
      * @return {Object} A JSON object with included ORYX.Core.AbstractShape.JSONHelper and getShape() method.
      */
@@ -10274,8 +10275,7 @@ ORYX.Core.AbstractShape = ORYX.Core.UIObject.extend(
               return props;
             }.bind(this)),
             stencil: {
-                id: this.getStencil().idWithoutNs(),
-                extensionId: this.getStencil().extensionIdWithoutNs()
+                id: this.getStencil().idWithoutNs()
             },
             childShapes: this.getChildShapes().map(function(shape){
                 return shape.toJSON()
@@ -10285,6 +10285,7 @@ ORYX.Core.AbstractShape = ORYX.Core.UIObject.extend(
         if (this.getStencil().extensionIdWithoutNs() != undefined)
         {
         	json.stencil.id = "ServiceTask";
+                json.stencil.extensionId = this.getStencil().extensionIdWithoutNs();
         }
 
         if(this.getOutgoingShapes){
@@ -20564,7 +20565,7 @@ ORYX.Plugins.ShapeRepository = {
 		var stencilId;
 		if (stencil._jsonStencil.extensionId != undefined)
 		{
-			stencilId = stencil._jsonStencil.extensionId;
+			stencilId = stencil.extensionId();
 		}
 		else
 		{

@@ -258,10 +258,10 @@ public abstract class BaseBpmnJsonConverter implements EditorJsonConstants, Sten
                 multiInstanceObject.setCompletionCondition(multiInstanceCondition);
                 activity.setLoopCharacteristics(multiInstanceObject);
                 //添加ExtensionId sundong
-                String extensionId = elementNode.path("stencil").get("extensionId").asText();
-                if (StringUtils.isNotEmpty(extensionId))
+                JsonNode extensionId = elementNode.path("stencil").get("extensionId");
+                if (extensionId != null)
                 {
-                    activity.setExtensionId(extensionId);
+                    activity.setExtensionId(extensionId.asText());
                 }
             }
         }
